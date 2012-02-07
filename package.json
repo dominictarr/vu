@@ -1,0 +1,16 @@
+{
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
+  "name": "view",
+  "description": "generate html from js with functional programming",
+  "version": "0.0.0",
+  "homepage": "github.com/dominictarr/view",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
