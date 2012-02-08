@@ -1,0 +1,172 @@
+info it worked if it ends with ok
+verbose cli [ 'node',
+verbose cli   '/home/dominic/.nave/installed/0.6.10/bin/npm',
+verbose cli   'publish' ]
+info using npm@1.1.0-3
+info using node@v0.6.10
+verbose config file /home/dominic/.npmrc
+verbose config file /home/dominic/.nave/installed/0.6.10/etc/npmrc
+verbose config file /home/dominic/.nave/installed/0.6.10/lib/node_modules/npm/npmrc
+verbose publish [ '.' ]
+verbose caching /home/dominic/d/view/package.json
+verbose loadDefaults view@0.0.0
+info prepublish view@0.0.0
+verbose cache add [ '.', null ]
+silly cache add: name, spec, args [ undefined, '.', [ '.', null ] ]
+verbose parsed url { pathname: '.', path: '.', href: '.' }
+verbose caching package.json
+verbose loadDefaults view@0.0.0
+verbose pack /home/dominic/d/view
+verbose pack /home/dominic/d/view /tmp/npm-1328624759662/1328624759661-0.8596895216032863/tmp.tgz
+silly makeList /home/dominic/d/view
+silly dir, dirLen [ '/home/dominic/d/view', 21 ]
+verbose tarball /tmp/npm-1328624759662/1328624759661-0.8596895216032863/tmp.tgz
+verbose parent /home/dominic/d/view
+verbose mkdir (expected) error ENOENT, no such file or directory '/tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm'
+verbose mkdir done: /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly afterUntar undefined
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/package.json
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/.npmignore
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/readme.markdown
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/index.js
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/test
+silly asyncMap in gTP /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view/test/simple.js
+silly chmod view 755
+silly chmod package.json 644
+silly chmod .npmignore 644
+silly chmod readme.markdown 644
+silly chmod index.js 644
+silly chmod test 755
+silly chmod simple.js 644
+verbose gunzed /tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view
+verbose rm'ed /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package
+verbose renamed [ '/tmp/npm-1328624759662/1328624759661-0.8596895216032863/___package.npm/view',
+verbose renamed   '/tmp/npm-1328624759662/1328624759661-0.8596895216032863/package' ]
+verbose caching /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package/package.json
+verbose loadDefaults view@0.0.0
+verbose tarball contents [ 'tmp.tgz', 'package' ]
+verbose from cache /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package/package.json
+verbose pack /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package
+verbose pack /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package /home/dominic/.npm/view/0.0.0/package.tgz
+silly makeList /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package
+silly dir, dirLen [ '/tmp/npm-1328624759662/1328624759661-0.8596895216032863/package',
+silly dir, dirLen   64 ]
+verbose tarball /home/dominic/.npm/view/0.0.0/package.tgz
+verbose parent /tmp/npm-1328624759662/1328624759661-0.8596895216032863/package
+verbose mkdir (expected) error ENOENT, no such file or directory '/home/dominic/.npm/view/0.0.0/___package.npm'
+verbose mkdir done: /home/dominic/.npm/view/0.0.0/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /home/dominic/.npm/view/0.0.0/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly afterUntar undefined
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/package.json
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/.npmignore
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/readme.markdown
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/index.js
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/test
+silly asyncMap in gTP /home/dominic/.npm/view/0.0.0/___package.npm/package/test/simple.js
+silly chmod package 755
+silly chmod test 755
+verbose gunzed /home/dominic/.npm/view/0.0.0/___package.npm/package
+verbose rm'ed /home/dominic/.npm/view/0.0.0/package
+verbose renamed [ '/home/dominic/.npm/view/0.0.0/___package.npm/package',
+verbose renamed   '/home/dominic/.npm/view/0.0.0/package' ]
+verbose caching /home/dominic/.npm/view/0.0.0/package/package.json
+verbose loadDefaults view@0.0.0
+silly updated sha bytes 1408
+info shasum a7c39b8f2fdcdbc394f8ea77796ec33acd450294
+info shasum /home/dominic/.npm/view/0.0.0/package.tgz
+verbose from cache /home/dominic/.npm/view/0.0.0/package/package.json
+verbose chmod /home/dominic/.npm/view/0.0.0/package.tgz 644
+verbose chown [ '/home/dominic/.npm/view/0.0.0/package.tgz', 1000, 1000 ]
+silly publish { author: 
+silly publish    { name: 'Dominic Tarr',
+silly publish      email: 'dominic.tarr@gmail.com',
+silly publish      url: 'dominictarr.com' },
+silly publish   name: 'view',
+silly publish   description: 'generate html from js with functional programming',
+silly publish   version: '0.0.0',
+silly publish   homepage: 'github.com/dominictarr/view',
+silly publish   repository: { url: '' },
+silly publish   engines: { node: '*' },
+silly publish   dependencies: {},
+silly publish   devDependencies: {},
+silly publish   optionalDependencies: {},
+silly publish   _npmUser: { name: 'dominictarr', email: 'dominic.tarr@gmail.com' },
+silly publish   _id: 'view@0.0.0',
+silly publish   _engineSupported: true,
+silly publish   _npmVersion: '1.1.0-3',
+silly publish   _nodeVersion: 'v0.6.10',
+silly publish   _defaultsLoaded: true,
+silly publish   dist: 
+silly publish    { shasum: 'a7c39b8f2fdcdbc394f8ea77796ec33acd450294',
+silly publish      tarball: 'http://registry.npmjs.org/view/-/view-0.0.0.tgz' },
+silly publish   readme: '' }
+verbose raw, before any munging view
+verbose url resolving [ 'https://registry.npmjs.org/', './view' ]
+verbose url resolved https://registry.npmjs.org/view
+http PUT https://registry.npmjs.org/view
+http 409 https://registry.npmjs.org/view
+verbose raw, before any munging view
+verbose url resolving [ 'https://registry.npmjs.org/', './view' ]
+verbose url resolved https://registry.npmjs.org/view
+http GET https://registry.npmjs.org/view
+http 200 https://registry.npmjs.org/view
+verbose raw, before any munging view/0.0.0/-tag/latest
+verbose url resolving [ 'https://registry.npmjs.org/', './view/0.0.0/-tag/latest' ]
+verbose url resolved https://registry.npmjs.org/view/0.0.0/-tag/latest
+http PUT https://registry.npmjs.org/view/0.0.0/-tag/latest
+http 403 https://registry.npmjs.org/view/0.0.0/-tag/latest
+ERR! Error sending version data
+ERR! Error: forbidden user: dominictarr not authorized to modify view
+ERR! Changed: description "Markup as JavaScript" -> "generate html from js with functional programming"
+ERR! Changed: dist-tags.latest "2.0.5" -> "0.0.0"
+ERR! Added: versions.0.0.0
+ERR! Changed: time.modified "2011-06-02T23:29:01.027Z" -> "2012-02-07T14:26:05.327Z"
+ERR! Added: time.0.0.0
+ERR! Changed: author.name "Ryan Eastridge" -> "Dominic Tarr"
+ERR! Changed: author.email "ryan@syntacticx.com" -> "dominic.tarr@gmail.com"
+ERR! Added: author.url
+ERR! Deleted: repository.type
+ERR! Changed Type: repository.type
+ERR! Changed: repository.type "git" -> undefined
+ERR! Changed: repository.url "git://github.com/syntacticx/viewjs.git" -> "": view/0.0.0/-tag/latest
+ERR!     at Request._callback (/home/dominic/.nave/installed/0.6.10/lib/node_modules/npm/lib/utils/npm-registry-client/request.js:182:12)
+ERR!     at Request.callback (/home/dominic/.nave/installed/0.6.10/lib/node_modules/npm/node_modules/request/main.js:109:22)
+ERR!     at Request.<anonymous> (/home/dominic/.nave/installed/0.6.10/lib/node_modules/npm/node_modules/request/main.js:481:18)
+ERR!     at Request.emit (events.js:67:17)
+ERR!     at IncomingMessage.<anonymous> (/home/dominic/.nave/installed/0.6.10/lib/node_modules/npm/node_modules/request/main.js:442:16)
+ERR!     at IncomingMessage.emit (events.js:88:20)
+ERR!     at HTTPParser.onMessageComplete (http.js:137:23)
+ERR!     at CleartextStream.ondata (http.js:1147:24)
+ERR!     at CleartextStream._push (tls.js:367:27)
+ERR!     at SecurePair.cycle (tls.js:688:20)
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Linux 3.0.0-12-generic
+ERR! command "node" "/home/dominic/.nave/installed/0.6.10/bin/npm" "publish"
+ERR! cwd /home/dominic/d/view
+ERR! node -v v0.6.10
+ERR! npm -v 1.1.0-3
+ERR! message forbidden user: dominictarr not authorized to modify view
+ERR! message Changed: description "Markup as JavaScript" -> "generate html from js with functional programming"
+ERR! message Changed: dist-tags.latest "2.0.5" -> "0.0.0"
+ERR! message Added: versions.0.0.0
+ERR! message Changed: time.modified "2011-06-02T23:29:01.027Z" -> "2012-02-07T14:26:05.327Z"
+ERR! message Added: time.0.0.0
+ERR! message Changed: author.name "Ryan Eastridge" -> "Dominic Tarr"
+ERR! message Changed: author.email "ryan@syntacticx.com" -> "dominic.tarr@gmail.com"
+ERR! message Added: author.url
+ERR! message Deleted: repository.type
+ERR! message Changed Type: repository.type
+ERR! message Changed: repository.type "git" -> undefined
+ERR! message Changed: repository.url "git://github.com/syntacticx/viewjs.git" -> "": view/0.0.0/-tag/latest
+verbose exit [ 1, true ]
