@@ -7,11 +7,16 @@
     <body>
     </body>
     <script>
-var list
-var clock = List(function (item) {
-  return vu(['li', item.toString()])
+
+var list = List(function (item) {
+  return vu(['li', '' + item])
 })
 
+var ARRAY = new ArrayEmitter()
+ARRAY.onchange = list.listener
+ARRAY.push(4)
+
+var clock = 
 vu(['div', 
     'are you ready ?', 
     vu.br,
@@ -25,12 +30,6 @@ vu(['div',
     vu.br,
     list 
 ])
-
-var ARRAY = new ArrayEmitter()
-
-ARRAY.onchange = list.listener
-
-ARRAY.push(4)
 
 setInterval(function () {
   clock.update()

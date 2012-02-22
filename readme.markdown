@@ -1,12 +1,15 @@
 # vu
 
-a js html templater in ~70 lines
+experimental js widget creator,
+inspired by [seaside](seaside.st) _the heretical web framework_
+
+> NOTE: this package should be regarded as experimental.
 
 #examples
 
 `vu` takes a tree of arrays and returns a function that returns html.
 
-```
+``` js
   var vu = require('vu')
  
   var page = 

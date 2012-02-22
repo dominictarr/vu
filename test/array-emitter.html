@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <script src="../lib/array-emitter.js"></script>
+  <style>
+    .pass { color: green; }
+    .fail { color: red; }
+    .test_result { margin: 3px;}
+
+  </style>
+
+  <body>
+    <div id=results></div>
+    <div id=lists></div>
+  </body>
+
+  <script>
+
+    var lists = document.getElementById('lists')
+    var results = document.getElementById('results')
+
+    var a = new ArrayEmitter()
+
+    var ol = List(function (i) { 
+      var li = document.createElement('li')
+      li.innerHTML = '' + i
+      return li
+    })
+
+    lists.appendChild(ol)
+    a.onchange = ol.listener 
+
+    var tests = 0
+
+    function log(pass, message) {
+      message = message ? ' - ' +message : ''
+      var str = (pass ? 'ok' : 'not ok') + ' ' + (tests++) + message
+      console.log(str)
+      var r = document.createElement('span')
+      r.classList.add('test_result') 
+      r.classList.add(pass ? 'pass' : 'fail') 
+      r.innerHTML = str
+      results.appendChild(r)
+    }
+
+    function assert (test, message) {
+      message = message || ''
+      log(test)
+      if(!test) 
+        throw new Error(message || 'test failed')
+    }
+
+    function assertMatch(ary, list) {
+      //check that elements match.
+      ary.forEach(function (v,k) {
+        assert('' + v == list.get(k).innerHTML)
+      }) 
+    }
+
+function test (name, test) {
+  try{
+    test()
+  } catch (e) {
+    log(false, name)
+    throw e
+  }
+  log(true, name)
+}
+
+test('simple', function () {
+    a.push('A')
+    assertMatch(a, ol, 'inital')
+    a.push('B')
+    a.push("C")
+    assertMatch(a, ol, 'added')
+    a.reverse()
+    assert(a.array.length == 3, 'length is 3')
+    var x = a.pop()
+    assert(a.array.length == 2, 'length is 2')
+    assertMatch(a, ol)
+    a.unshift(x)
+    a.unshift(null)
+    assertMatch(a, ol)
+
+//do some splices with out of range indicies.
+//that should break it.
+
+    a.splice(-12,1) //delete the first item
+    assertMatch(a, ol)
+
+    a.splice(2,-1)
+    assertMatch(a, ol)
+
+    a.splice(0,20)
+    assertMatch(a, ol)
+// splice insert on to end of list!!!
+
+    a.pop()
+    assertMatch(a, ol)
+    //a.shift()
+    assertMatch(a, ol)
+
+// remove operations on an empty list
+    a.splice(0,0, 'gimmie', 'gimmie', 'gimmie')
+    assertMatch(a, ol)
+})
+
+  </script>
+</body>
+</html>
