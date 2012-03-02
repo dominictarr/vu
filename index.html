@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="./lib/array-emitter.js"></script>
-    <script src="./lib/vu-client.js"></script>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <script src="./lib/array-emitter.js"></script>
+      <script src="./lib/vu-client.js"></script>
     </head>
     <body>
     </body>
-    <script>
+  <script>
 
-var list = List(function (item) {
-  return vu(['li', '' + item])
-})
+  var list = List(function (item) {
+    return vu(['li', '' + item])
+  })
 
-var ARRAY = new ArrayEmitter()
-ARRAY.onchange = list.listener
-ARRAY.push(4)
+  var ARRAY = new ArrayEmitter()
+  ARRAY.onchange = list.listener
+  ARRAY.push(4)
 
-var clock = 
-vu(['div', 
-    'are you ready ?', 
-    vu.br,
+  var clock = 
+  vu(['div', 
+      'are you ready ?', 
+      vu.br,
     vu.a('[click here if ready]', 
       function () { vu.replace(this, ['span', 'okay!'])}
     ), 
@@ -28,7 +28,61 @@ vu(['div',
       function () {return new Date().toString()}
     ],
     vu.br,
-    list 
+    list,
+    //an input with validation.
+    vu.input('text', 'email', 
+      function (v) {
+        if(!/^\w+@\w+\.\w+$/.test(v.trim()))
+          throw 'must me valid email'
+        return true
+      }
+    ),
+    /*
+      maybe a better way to achive this would be to seperate
+      the input from the lable and message,
+      and then have the message listen to the input?
+
+      ['div', 
+        LABLE,
+        INPUT = vu.input(...),
+        vu.message(INPUT, { 
+          initial: 'initial message',
+          invalid: function () {generate a message},
+          ok: 'ok' //message when valid
+        })
+      ]
+
+      or something like that...
+
+      another thing would be a field set:
+
+      vu.fieldset(
+        vu.input(...),
+        vu.input(...),
+        vu.input(...),
+      )
+      which would mainly serve to trigger an event when all fields where 
+      valid.
+      a fieldset could have an onvalid event exactly like
+      a input, but it would emit 'valid' when all it's fields 
+      are valid.
+
+      say, to enable a submit button.
+
+    */
+
+    /*
+      what about an editable field that set a property on a object?
+
+      label element, that hides and reveals an input on click
+  var a = {message: whatever}
+      vu.inplace(a,
+        ['div', function () {return a.message}],
+        ['input', {
+          update: function () {return a.message},
+
+    */
+  vu.edit({value: 'EDIT: whatever'})
 ])
 
 setInterval(function () {

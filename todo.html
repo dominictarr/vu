@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./lib/array-emitter.js"></script>
+    <script src="./lib/vu-client.js"></script>
+  </head>
+  <body>
+  </body>
+<script>
+var tasks = new ArrayEmitter () 
+var list = List(function (task) {
+  return vu(['li',
+    ['div', {class: 'task'},
+      ['input', {type: 'checkbox', onchange: function (e) { task.done = this.checked } }],
+      ['span', task.task],
+      vu.a('x', function (e) { tasks.splice(tasks.indexOf(task), 1) })
+    ]
+  ])
+})
+tasks.onchange = list.listener
+ 
+vu(['div', 
+  ['input', {type: 'text', id:'newTask', onkeyup: function (e) {
+  
+    if(e.keyCode != 13 || !this.value) return
+    console.log(e.keyCode,this.value)
+    tasks.push({
+      done: false,
+      task: this.value,
+      timestamp: new Date()
+    })
+    this.value = ''
+  }}],
+  list
+])
+
+
+</script>
+</html>
