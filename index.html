@@ -85,6 +85,8 @@
   vu.edit({value: 'EDIT: whatever'})
 ])
 
+document.body.appendChild(clock)
+
 setInterval(function () {
   clock.update()
 }, 1e3)

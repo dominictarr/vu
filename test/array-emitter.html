@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <script src="../lib/events.js"></script>
   <script src="../lib/array-emitter.js"></script>
   <style>
     .pass { color: green; }
@@ -14,20 +15,25 @@
   </body>
 
   <script>
+  var lists = document.getElementById('lists')
+  var results = document.getElementById('results')
 
-    var lists = document.getElementById('lists')
-    var results = document.getElementById('results')
+function newLists(ary, test) {
+  if(!test) test = ary, ary = null
+  var a = new ArrayEmitter(ary)
 
-    var a = new ArrayEmitter()
+  var ol = List(function (i) { 
+    var li = document.createElement('li')
+    li.innerHTML = '' + i
+    return li
+  })
 
-    var ol = List(function (i) { 
-      var li = document.createElement('li')
-      li.innerHTML = '' + i
-      return li
-    })
+  lists.appendChild(ol)
+//  a.on('change', ol.listener)
+  ol.track(a)
+  test(a, ol)
 
-    lists.appendChild(ol)
-    a.onchange = ol.listener 
+}
 
     var tests = 0
 
@@ -67,6 +73,7 @@ function test (name, test) {
 }
 
 test('simple', function () {
+  newLists(function (a, ol) {
     a.push('A')
     assertMatch(a, ol, 'inital')
     a.push('B')
@@ -102,6 +109,16 @@ test('simple', function () {
 // remove operations on an empty list
     a.splice(0,0, 'gimmie', 'gimmie', 'gimmie')
     assertMatch(a, ol)
+  })
+})
+
+test('initial array', function () {
+  newLists([1,2,3], function (a, ol) {
+    console.log('TEST 2', a)
+    assert(a.length() == 3, 'array-emitter.length() = 3')
+    assert(ol.length() == 3, 'List.length() = 3')
+    assertMatch(a, ol)
+  })
 })
 
   </script>
