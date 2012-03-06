@@ -3,65 +3,13 @@
   <html>
     <head>
     <script src="./lib/events.js"></script>
-    <script src="./lib/array-emitter.js"></script>
-    <script src="./lib/vu-client.js"></script>
     <script src="./lib/model.js"></script>
+    <script src="./lib/client.js"></script>
+    <script src="./lib/widget.js"></script>
     </head>
     <body>
     </body>
   <script>
-
-  function toElement(el) {
-     if(!(el instanceof HTMLElement)) {
-      var n = document.createElement('label')
-      n.innerHTML = '' + el
-      return n
-    }
-    return el
-  }
-
-  function replace (newEl, oldEl) {
-    if(newEl == null)
-      return oldEl
-    newEl = toElement(newEl)
-    oldEl.parentElement.replaceChild(newEl, oldEl)
-    return newEl
-  }
-
-  function widget (render) {
-    return function (model) {
-      var props = {}, elements = {}
-      function on (key, render) {
-        props[key] = render || function (v) {
-          var el = toElement (v)
-          //el.classList.add(key)
-          return el
-        }
-        elements[key] = 
-          toElement(props[key].call(null, model.get(key)))
-        console.log(props)
-        return elements[key]
-      }
-
-      var element = render.call(on, model)
-
-      element.set = function (key, value) {
-        if(!props[key]) return
-        var el = elements[key]
-        elements[key] =  
-          replace(props[key].call(el, value), el)
-      }
-      element.get = function (key) {
-        if(!elements[key]) return
-        return elements[key]
-      }
-      if(model instanceof Model)
-        model.on('change', function (key, value) {
-          element.set(key, value)
-        })
-      return element
-    }
-  }
 
   var thing = new Model({
       a: 'aardvark', b: 'banana', time: new Date()
@@ -72,7 +20,7 @@
       ['div.thing', {}, this('a'),' ', this('b'), 
         ['div', 'TIME:',this('time', function (time) {
           return [
-            time.getHours(), 
+            time.getHours(),  
             time.getMinutes(), 
             time.getSeconds()
           ].join(':')
@@ -83,12 +31,21 @@
 
 document.body.appendChild(thingWidget(thing))
 
+var bs = ['banana', 'beer', 'boat']
+var as = ['aardvark', 'apple', 'anykey']
+
+function cycle (array) {
+  var a = array.shift()
+  array.push(a)
+  return a
+}
+
 setInterval(function () {
   thing.set('time', new Date())
   if(Math.random() > 0.5)
-    thing.set('a', 'aardvark')
+    thing.set('a', cycle(as))
   else
-    thing.set('a', 'apple')
+    thing.set('b', cycle(bs))
 }, 1e3)
 
 </script>
