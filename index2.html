@@ -4,16 +4,35 @@
     <head>
     <script src="./lib/events.js"></script>
     <script src="./lib/model.js"></script>
-    <script src="./lib/client.js"></script>
     <script src="./lib/widget.js"></script>
+    <script src="./lib/client.js"></script>
     </head>
     <body>
     </body>
   <script>
 
   var thing = new Model({
-      a: 'aardvark', b: 'banana', time: new Date()
+      a: 'aardvark', b: 'banana', time: new Date(),
+      whatevs: 'aoecmnpmwqkvm'
   })
+
+  function input (value, key, model) {
+    if(this.init)
+      return vu(
+        [ 'input', 
+          { type: 'text', 
+            onchange: function () {
+              //use try - catch to check for validation fail.
+              //or, should the model emit an error?
+              model.set(key, this.value)
+            },
+            value: value
+          } 
+        ])
+    else this.value = value
+    //if a value render function returns null that means
+    //that it has updated the element, do not replace element.
+  }
 
   var thingWidget = widget(function (t) {
     return vu(
@@ -24,7 +43,8 @@
             time.getMinutes(), 
             time.getSeconds()
           ].join(':')
-        })]
+        })],
+        this('whatevs', input) 
       ]
     );
  })
