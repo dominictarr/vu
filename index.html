@@ -1,95 +1,74 @@
-  <!DOCTYPE html>
+
+<!DOCTYPE html>
   <html>
     <head>
+    <script src="./lib/utils.js"></script>
     <script src="./lib/events.js"></script>
-     <script src="./lib/array-emitter.js"></script>
-      <script src="./lib/vu-client.js"></script>
+    <script src="./lib/model.js"></script>
+    <script src="./lib/widget.js"></script>
+    <script src="./lib/client.js"></script>
+    <script src="./lib/toolkit.js"></script>
+    <style>
+      #changes {
+        float: right;
+      }
+
+    </style>
     </head>
     <body>
     </body>
   <script>
 
-  var list = List(function (item) {
-    return vu(['li', '' + item])
+  var thing = new Model({
+      a: 'aardvark', b: 'banana', time: new Date(),
+      whatevs: 'aoecmnpmwqkvm'
   })
 
-  var ARRAY = new ArrayEmitter()
-  ARRAY.onchange = list.listener
-  ARRAY.push(4)
-
-  var clock = 
-  vu(['div', 
-      'are you ready ?', 
-      vu.br,
-    vu.a('[click here if ready]', 
-      function () { vu.replace(this, ['span', 'okay!'])}
-    ), 
-    vu.br,
-    [ 'div', {id:'clock'}, 
-      function () {return new Date().toString()}
-    ],
-    vu.br,
-    list,
-    //an input with validation.
-    vu.input('text', 'email', 
-      function (v) {
-        if(!/^\w+@\w+\.\w+$/.test(v.trim()))
-          throw 'must me valid email'
-        return true
-      }
-    ),
-    /*
-      maybe a better way to achive this would be to seperate
-      the input from the lable and message,
-      and then have the message listen to the input?
-
-      ['div', 
-        LABLE,
-        INPUT = vu.input(...),
-        vu.message(INPUT, { 
-          initial: 'initial message',
-          invalid: function () {generate a message},
-          ok: 'ok' //message when valid
-        })
+  var changes = new ArrayModel()
+  var thingChangesArray = widgetArray ({tag: 'ol#changes', item: function (change) {
+    return vu(['div', change.key, ': ', ''+change.value])
+  }})
+  thingChangesArray.track(changes)
+  
+  var thingWidget = widget(function (t) {
+    return vu(
+      ['div.thing', {}, this('a'),' ', this('b'), 
+        ['div', 'TIME:',this('time', function (time) {
+          return [
+            time.getHours(),  
+            time.getMinutes(), 
+            time.getSeconds()
+          ].join(':')
+        })],
+        this('whatevs', vu.edit({input: vu.input({tag: 'textarea'})})) 
       ]
+    );
+ })
 
-      or something like that...
+document.body.appendChild(thingWidget(thing)).appendChild(thingChangesArray)
 
-      another thing would be a field set:
+var bs = ['banana', 'beer', 'boat']
+var as = ['aardvark', 'apple', 'anykey']
 
-      vu.fieldset(
-        vu.input(...),
-        vu.input(...),
-        vu.input(...),
-      )
-      which would mainly serve to trigger an event when all fields where 
-      valid.
-      a fieldset could have an onvalid event exactly like
-      a input, but it would emit 'valid' when all it's fields 
-      are valid.
+function cycle (array) {
+  var a = array.shift()
+  array.push(a)
+  return a
+}
 
-      say, to enable a submit button.
-
-    */
-
-    /*
-      what about an editable field that set a property on a object?
-
-      label element, that hides and reveals an input on click
-  var a = {message: whatever}
-      vu.inplace(a,
-        ['div', function () {return a.message}],
-        ['input', {
-          update: function () {return a.message},
-
-    */
-  vu.edit({value: 'EDIT: whatever'})
-])
-
-document.body.appendChild(clock)
+thing.on('change', function (key, value) {
+  if(key != 'time')
+  changes.push({key: key, value: value})
+  if(changes.length() > 10)
+    changes.shift()
+})
 
 setInterval(function () {
-  clock.update()
+  thing.set('time', new Date())
+  if(Math.random() > 0.5)
+    thing.set('a', cycle(as))
+  else
+    thing.set('b', cycle(bs))
 }, 1e3)
 
 </script>
